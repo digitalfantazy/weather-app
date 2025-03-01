@@ -1,0 +1,29 @@
+.app {
+  flex-grow: 2;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: var(--bg-second);
+  overflow: auto;
+}
+
+.header-wrapper {
+  z-index: 1003;
+  width: 100%;
+}
+
+.main {
+  z-index: 1002;
+  flex-grow: 2;
+  width: 100%;
+  display: flex;
+}
+
+.content {
+  position: relative;
+  padding: 1.25rem;
+  flex-grow: 2;
+  display: flex;
+  flex-direction: column;
+}
