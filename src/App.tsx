@@ -4,11 +4,13 @@ import { AppRoutes } from './router/AppRoutes';
 import { useAuth } from './context/AuthContext';
 import block from 'bem-cn';
 
+import './App.scss';
+
 const b = block('app');
 
 const App = () => {
-  const isAuthenticated = true;
-  // const { isAuthenticated } = useAuth();
+  // const isAuthenticated = true;
+  const { isAuthenticated } = useAuth();
 
   useEffect(() => {
     if (isAuthenticated) {

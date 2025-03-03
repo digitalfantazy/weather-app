@@ -1,6 +1,6 @@
 import { JSX } from 'react';
 import { Navigate, Route, Routes } from 'react-router-dom';
-import WeatherPage from '../pages/WeatherPage';
+import WeatherPage from '../pages/WeatherPage/WeatherPage';
 import LoginPage from '../pages/LoginPage/LoginPage';
 
 interface ProtectedRouteProps {

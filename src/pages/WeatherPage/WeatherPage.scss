@@ -1,0 +1,26 @@
+.weather {
+  border-radius: 0.625rem;
+  padding: 2.5rem;
+  background: #fff;
+
+  &__top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+  }
+
+  &__grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+
+  &__grid-item {
+    background-color: rgb(255, 255, 255);
+    border: 1px solid #c5c5c5;
+    border-radius: 0.625rem;
+    padding: 1rem;
+  }
+}
