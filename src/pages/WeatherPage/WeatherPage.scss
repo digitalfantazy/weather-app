@@ -1,13 +1,17 @@
 .weather {
   border-radius: 0.625rem;
   padding: 2.5rem;
-  background: #fff;
+  background: var(--bg-main);
 
   &__top {
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-bottom: 2rem;
+  }
+
+  &__title {
+    color: var(--text-main);
   }
 
   &__grid {
@@ -18,8 +22,8 @@
   }
 
   &__grid-item {
-    background-color: rgb(255, 255, 255);
-    border: 1px solid #c5c5c5;
+    background-color: var(--bg-second);
+    border: 1px solid var(--bg-main);
     border-radius: 0.625rem;
     padding: 1rem;
   }

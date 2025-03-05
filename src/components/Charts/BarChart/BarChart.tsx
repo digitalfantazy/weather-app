@@ -12,17 +12,19 @@ import { Bar } from 'react-chartjs-2';
 
 import { BarChartProps } from './types';
 import { getChartData, getChartOptions } from './options';
-import { countTempRange } from '../../shared/helpers/countTempRange';
+import { countTempRange } from '../../../shared/helpers/countTempRange';
+import { useTheme } from '../../../context/ThemeContext';
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
 
 const BarChart: React.FC<BarChartProps> = ({ data, mode = 'bar' }) => {
+  const { theme } = useTheme();
   const [chartData, setChartData] = useState<{ labels: string[]; values: number[] }>({
     labels: [],
     values: [],
   });
 
-  const chartOptions = getChartOptions(mode);
+  const chartOptions = getChartOptions(mode, theme);
 
   useEffect(() => {
     if (data) {
@@ -35,7 +37,7 @@ const BarChart: React.FC<BarChartProps> = ({ data, mode = 'bar' }) => {
     }
   }, [data, mode]);
 
-  return <Bar options={chartOptions} data={getChartData(chartData, mode)} />;
+  return <Bar options={chartOptions} data={getChartData(chartData, mode, theme)} />;
 };
 
 export default BarChart;

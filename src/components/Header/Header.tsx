@@ -8,10 +8,12 @@ import { Link } from 'react-router-dom';
 import { useState } from 'react';
 import CreateUserModal from './CreateUserModal/CreateUserModal';
 import Button from '@mui/material/Button';
+import { useTheme } from '../../context/ThemeContext';
 
 const b = block('header');
 const Header = () => {
   const { user, logout, role } = useAuth();
+  const { theme, toggleTheme } = useTheme();
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   return (
@@ -22,8 +24,9 @@ const Header = () => {
       <div className={b('info')}>
         <div className={b('item')}>
           <div className={b('item-icon')}>
-            <PersonIcon color="action" fontSize="large" />
+            <PersonIcon color={`${theme === 'light' ? 'action' : 'secondary'}`} fontSize="large" />
           </div>
+
           <div className={b('item-data')}>
             <div className={b('item-label')}>Приветствуем,</div>
             <div className={b('item-value')}>
@@ -37,7 +40,7 @@ const Header = () => {
                 size="small"
                 type="button"
                 variant="contained"
-                color="primary"
+                color={`${theme === 'light' ? 'primary' : 'secondary'}`}
                 sx={{ fontFamily: 'Manrope, sans-serif', fontWeight: '700' }}
                 onClick={() => setIsModalOpen(true)}
               >
@@ -45,8 +48,20 @@ const Header = () => {
               </Button>
             </div>
           )}
+          <div className={b('item-button')}>
+            <Button
+              size="small"
+              type="button"
+              variant="contained"
+              color={`${theme === 'light' ? 'primary' : 'secondary'}`}
+              sx={{ fontFamily: 'Manrope, sans-serif', fontWeight: '700' }}
+              onClick={toggleTheme}
+            >
+              Переключить тему ({theme === 'light' ? 'Тёмная' : 'Светлая'})
+            </Button>
+          </div>
           <div className={b('logout')} onClick={logout}>
-            <LogoutIcon color="action" />
+            <LogoutIcon color={`${theme === 'light' ? 'action' : 'secondary'}`} />
           </div>
         </div>
       </div>

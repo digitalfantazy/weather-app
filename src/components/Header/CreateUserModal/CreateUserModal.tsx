@@ -6,6 +6,7 @@ import './CreateUserModal.scss';
 import Input from '../../Input/Input';
 import AppButton from '../../Button/AppButton';
 import { useAuth } from '../../../context/AuthContext';
+import { useTheme } from '../../../context/ThemeContext';
 
 const b = block('create-user-modal');
 
@@ -18,6 +19,7 @@ const CreateUserModal: React.FC<CreateUserModalProps> = ({ isOpen, setIsOpen }) 
   const { createUser, role } = useAuth();
   const [userName, setUserName] = useState('');
   const [password, setPassword] = useState('');
+  const { theme } = useTheme();
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -59,7 +61,12 @@ const CreateUserModal: React.FC<CreateUserModalProps> = ({ isOpen, setIsOpen }) 
               </div>
             </div>
             <div className={b('modal-buttons')}>
-              <Button onClick={() => setIsOpen(false)}>Закрыть</Button>
+              <Button
+                onClick={() => setIsOpen(false)}
+                color={`${theme === 'light' ? 'primary' : 'secondary'}`}
+              >
+                Закрыть
+              </Button>
               <AppButton color="primary" type="submit">
                 Создать
               </AppButton>

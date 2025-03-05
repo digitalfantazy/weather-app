@@ -2,10 +2,10 @@ import React, { useEffect, useState } from 'react';
 import block from 'bem-cn';
 
 import AppSelect from '../../components/AppSelect/AppSelect';
-import LineChart from '../../components/LineChart/LineChart';
-import BarChart from '../../components/BarChart/BarChart';
-import MovingAverageChart from '../../components/MovingAverageChart/MovingAverageChart';
-import TemperatureHumidityChart from '../../components/TempHumidityChart/TempHumidityChart';
+import LineChart from '../../components/Charts/LineChart/LineChart';
+import BarChart from '../../components/Charts/BarChart/BarChart';
+import MovingAverageChart from '../../components/Charts/MovingAverageChart/MovingAverageChart';
+import TemperatureHumidityChart from '../../components/Charts/TempHumidityChart/TempHumidityChart';
 import DateRangePicker from '../../components/DateRangePicker/DateRangePicker';
 import { getWeatherData, RecievedWeatherData } from '../../api/getWeatherData';
 import './WeatherPage.scss';
@@ -43,11 +43,13 @@ const WeatherPage: React.FC = () => {
     if (weatherData) {
       const currentDate = new Date();
       const defaultEndDate = new Date();
+      // APi OpenWeather без подписки отдает максимум 5 дней прогноза
       defaultEndDate.setDate(currentDate.getDate() + 5);
       handleDateRangeChange(currentDate, defaultEndDate);
     }
   }, [weatherData]);
 
+  /**Функция для фильтрации по дате */
   const handleDateRangeChange = (startDate: Date, endDate: Date) => {
     if (weatherData) {
       const filteredLabels = weatherData.labels.filter((label) => {
@@ -90,7 +92,7 @@ const WeatherPage: React.FC = () => {
   return (
     <div className={b()}>
       <div className={b('top')}>
-        <h1>Данные о погоде в Москве на 5 дней</h1>
+        <h1 className={b('title')}>Данные о погоде в Москве на 5 дней</h1>
         <DateRangePicker onChange={handleDateRangeChange} />
       </div>
       <div className={b('grid')}>

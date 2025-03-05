@@ -11,12 +11,15 @@ import {
 import { Line } from 'react-chartjs-2';
 import { getChartData, getChartOptions } from './options';
 import { LineChartProps } from './types';
+import { useTheme } from '../../../context/ThemeContext';
 
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
 
 const LineChart: React.FC<LineChartProps> = ({ data }) => {
-  const chartOptions = getChartOptions();
-  const chartData = getChartData(data.labels, data.temperatures);
+  const { theme } = useTheme();
+
+  const chartOptions = getChartOptions(theme);
+  const chartData = getChartData(data.labels, data.temperatures, theme);
 
   return <Line options={chartOptions} data={chartData} />;
 };

@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
-import { Navigate, Outlet } from 'react-router-dom';
+import { Navigate, Outlet, useNavigate } from 'react-router-dom';
 
 interface User {
   username: string;
@@ -31,6 +31,8 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   );
   const [isAuthenticated, setIsAuthenticated] = useState(!!localStorage.getItem('user'));
 
+  const navigate = useNavigate();
+
   const adminUser: User = {
     username: 'admin',
     password: 'admin',
@@ -44,8 +46,8 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
   const createUser = (username: string, password: string) => {
     if (role === 'admin') {
-      const newUser = { username, password, role: 'user' }; // Все новые пользователи имеют роль 'user'
-      const updatedUsers = [...users, newUser];
+      const newUser: User = { username, password, role: 'user' }; // Все новые пользователи имеют роль 'user'
+      const updatedUsers: User[] = [...users, newUser];
       setUsers(updatedUsers);
       localStorage.setItem('users', JSON.stringify(updatedUsers));
     }
@@ -65,6 +67,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     return false;
   };
   const logout = () => {
+    navigate('/login');
     localStorage.removeItem('user');
     localStorage.removeItem('role');
     setUser(null);

@@ -12,6 +12,7 @@ import {
 } from 'chart.js';
 import { Line, Bar } from 'react-chartjs-2';
 import { getChartData, getChartOptions } from './options';
+import { useTheme } from '../../../context/ThemeContext';
 
 ChartJS.register(
   CategoryScale,
@@ -37,8 +38,9 @@ const TemperatureHumidityChart: React.FC<TemperatureHumidityChartProps> = ({
   data,
   mode = 'line',
 }) => {
-  const chartOptions = getChartOptions();
-  const chartData = getChartData(data.labels, data.temperatures, data.humidities);
+  const { theme } = useTheme();
+  const chartOptions = getChartOptions(theme);
+  const chartData = getChartData(data.labels, data.temperatures, data.humidities, theme);
 
   return mode === 'line' ? (
     <Line options={chartOptions} data={chartData} />

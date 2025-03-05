@@ -33,6 +33,20 @@ html {
   --text-accent: #0094ff;
 
   --bg-main: #ffffff;
-  --bg-second: #edf0f4;
+  --bg-second: #f5f8fd;
   --bg-third: #cfdae9;
+
+  --bg-blur: rgba(255, 255, 255, 0.486);
+
+  &[data-theme='dark'] {
+    --text-main: #ffffff;
+    --text-grey: #8c9eb7;
+    --text-accent: #0094ff;
+
+    --bg-main: rgba(10, 17, 28, 1);
+    --bg-second: rgba(50, 61, 78, 1);
+    --bg-third: rgba(39, 49, 66, 1);
+
+    --bg-blur: rgba(100, 100, 100, 0.486);
+  }
 }

@@ -11,6 +11,7 @@ import {
 } from 'chart.js';
 import { Line } from 'react-chartjs-2';
 import { getChartData, getChartOptions } from './options';
+import { useTheme } from '../../../context/ThemeContext';
 
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
 
@@ -22,6 +23,8 @@ interface MovingAverageChartProps {
 }
 
 const MovingAverageChart: React.FC<MovingAverageChartProps> = ({ data }) => {
+  const { theme } = useTheme();
+
   // Функция для расчета скользящей средней
   const calculateMovingAverage = (data: number[], windowSize: number) => {
     return data.map((_, index) => {
@@ -35,8 +38,8 @@ const MovingAverageChart: React.FC<MovingAverageChartProps> = ({ data }) => {
 
   const movingAverage = calculateMovingAverage(data.temperatures, 5);
 
-  const chartOptions = getChartOptions();
-  const chartData = getChartData(data.labels, data.temperatures, movingAverage);
+  const chartOptions = getChartOptions(theme);
+  const chartData = getChartData(data.labels, data.temperatures, movingAverage, theme);
 
   return <Line options={chartOptions} data={chartData} />;
 };

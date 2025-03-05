@@ -19,8 +19,6 @@ const ProtectedRoute = ({ isAuth, children }: ProtectedRouteProps) => {
 
 export const AppRoutes = ({ isAuth }: { isAuth: boolean }) => (
   <Routes>
-    <Route path="/login" element={<LoginPage />} />
-
     <Route
       path="/weather"
       element={
@@ -30,9 +28,12 @@ export const AppRoutes = ({ isAuth }: { isAuth: boolean }) => (
       }
     />
     {!isAuth ? (
-      <Route path="*" element={<Navigate to="/weather" replace />} />
+      <>
+        <Route path="/login" element={<LoginPage />} />
+        <Route path="*" element={<Navigate to="/weather" replace />} />
+      </>
     ) : (
-      <Route path="*" element={<ForbiddenPage />} />
+      <Route path="*" element={<Navigate to="/weather" replace />} />
     )}
   </Routes>
 );
