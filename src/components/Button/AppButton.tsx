@@ -1,12 +1,14 @@
-import { ButtonHTMLAttributes } from 'react';
+import React, { ButtonHTMLAttributes } from 'react';
 import Button from '@mui/material/Button';
 
 interface IButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   size?: 'small' | 'medium' | 'large';
   type?: 'submit' | 'button';
+
+  children: React.ReactNode;
 }
 
-const AppButton = ({ size = 'medium', type }: IButtonProps) => {
+const AppButton = ({ size = 'medium', type, children }: IButtonProps) => {
   return (
     <Button
       size={size}
@@ -14,7 +16,7 @@ const AppButton = ({ size = 'medium', type }: IButtonProps) => {
       variant="contained"
       sx={{ fontFamily: 'Manrope, sans-serif', fontWeight: '800', width: '100px' }}
     >
-      Вход
+      {children}
     </Button>
   );
 };

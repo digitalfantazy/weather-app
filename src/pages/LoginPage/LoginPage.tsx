@@ -38,7 +38,7 @@ const LoginPage: React.FC = () => {
               name="login"
               value={userName}
               type="text"
-              placeholder="Логин"
+              placeholder="Логин "
               onChange={(e) => setUserName(e.target.value)}
               error={error}
             />
@@ -63,7 +63,9 @@ const LoginPage: React.FC = () => {
 
         <div className={b('bottom')}>
           <div className={b('button')}>
-            <AppButton id="log-in" type="submit" />
+            <AppButton id="log-in" type="submit">
+              Вход
+            </AppButton>
           </div>
         </div>
       </form>

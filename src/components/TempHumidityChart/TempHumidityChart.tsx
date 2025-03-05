@@ -5,14 +5,24 @@ import {
   LinearScale,
   PointElement,
   LineElement,
+  BarElement,
   Title,
   Tooltip,
   Legend,
 } from 'chart.js';
-import { Line } from 'react-chartjs-2';
+import { Line, Bar } from 'react-chartjs-2';
 import { getChartData, getChartOptions } from './options';
 
-ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
+ChartJS.register(
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  BarElement,
+  Title,
+  Tooltip,
+  Legend
+);
 
 interface TemperatureHumidityChartProps {
   data: {
@@ -20,13 +30,21 @@ interface TemperatureHumidityChartProps {
     temperatures: number[];
     humidities: number[];
   };
+  mode: 'line' | 'bar';
 }
 
-const TemperatureHumidityChart: React.FC<TemperatureHumidityChartProps> = ({ data }) => {
-  const chartOprions = getChartOptions();
+const TemperatureHumidityChart: React.FC<TemperatureHumidityChartProps> = ({
+  data,
+  mode = 'line',
+}) => {
+  const chartOptions = getChartOptions();
   const chartData = getChartData(data.labels, data.temperatures, data.humidities);
 
-  return <Line options={chartOprions} data={chartData} />;
+  return mode === 'line' ? (
+    <Line options={chartOptions} data={chartData} />
+  ) : (
+    <Bar options={chartOptions} data={chartData} />
+  );
 };
 
 export default TemperatureHumidityChart;

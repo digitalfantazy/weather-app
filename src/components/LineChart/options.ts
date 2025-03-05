@@ -1,3 +1,5 @@
+import { formatDate } from '../../shared/helpers/formatDate';
+
 export const getChartOptions = () => ({
   responsive: true,
   plugins: {
@@ -55,15 +57,19 @@ export const getChartOptions = () => ({
   },
 });
 
-export const getChartData = (labels: string[], temperatures: number[]) => ({
-  labels,
-  datasets: [
-    {
-      label: 'Температура (°C)',
-      data: temperatures,
-      borderColor: 'rgb(255, 99, 132)',
-      backgroundColor: 'rgba(255, 99, 132, 0.5)',
-      tension: 0.5,
-    },
-  ],
-});
+export const getChartData = (labels: string[], temperatures: number[]) => {
+  const formattedLabels = formatDate(labels); // Форматируем даты
+
+  return {
+    labels: formattedLabels,
+    datasets: [
+      {
+        label: 'Температура (°C)',
+        data: temperatures,
+        borderColor: 'rgb(255, 99, 132)',
+        backgroundColor: 'rgba(255, 99, 132, 0.5)',
+        tension: 0.5,
+      },
+    ],
+  };
+};

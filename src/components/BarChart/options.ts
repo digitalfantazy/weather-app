@@ -1,5 +1,3 @@
-import { HistogramData } from './types';
-
 export const getChartOptions = (mode: 'bar' | 'histogram') => ({
   responsive: true,
   plugins: {
@@ -25,7 +23,7 @@ export const getChartOptions = (mode: 'bar' | 'histogram') => ({
     x: {
       title: {
         display: true,
-        text: mode === 'histogram' ? 'Диапазон температур (°C)' : 'Время',
+        text: mode === 'histogram' ? 'Диапазон температур (°C)' : '',
         font: {
           size: 14,
           family: 'Manrope, sans-serif',
@@ -84,7 +82,17 @@ export const getChartData = (
     {
       label: mode === 'histogram' ? 'Количество значений' : 'Температура (°C)',
       data: values,
-      backgroundColor: 'rgba(75, 192, 192, 0.5)',
+      backgroundColor:
+        mode === 'histogram'
+          ? [
+              'rgba(255, 99, 132, 0.5)',
+              'rgba(54, 162, 235, 0.5)',
+              'rgba(75, 192, 192, 0.5)',
+              'rgba(153, 102, 255, 0.5)',
+              'rgba(255, 159, 64, 0.5)',
+            ]
+          : 'rgba(75, 192, 192, 0.5)',
+
       barPercentage: 0.5,
     },
   ],

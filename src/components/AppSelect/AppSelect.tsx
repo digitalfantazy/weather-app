@@ -7,16 +7,17 @@ interface AppSelectProps {
   value: string;
   onChange: (value: string) => void;
   options: { value: string; label: string }[];
+  label: string;
 }
 
-const AppSelect: React.FC<AppSelectProps> = ({ value, onChange, options }) => {
+const AppSelect: React.FC<AppSelectProps> = ({ value, onChange, options, label }) => {
   const handleChange = (event: SelectChangeEvent) => {
     onChange(event.target.value);
   };
 
   return (
     <FormControl sx={{ m: 1, minWidth: 180 }} size="small">
-      <InputLabel id="select">График</InputLabel>
+      <InputLabel id="select">{label}</InputLabel>
       <Select
         labelId="select"
         id="select"

@@ -5,8 +5,3 @@ export interface BarChartProps {
   };
   mode?: 'bar' | 'histogram';
 }
-
-export interface HistogramData {
-  labels: string[];
-  counts: number[];
-}
