@@ -30,7 +30,7 @@ export const AppRoutes = ({ isAuth }: { isAuth: boolean }) => (
     {!isAuth ? (
       <>
         <Route path="/login" element={<LoginPage />} />
-        <Route path="*" element={<Navigate to="/weather" replace />} />
+        <Route path="*" element={<Navigate to="/login" replace />} />
       </>
     ) : (
       <Route path="*" element={<Navigate to="/weather" replace />} />
